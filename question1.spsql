@@ -84,6 +84,8 @@ INSERT INTO order_items (order_item_id, order_id, product_id, quantity) VALUES
 (15, 9, 5, 1),
 (16, 10, 2, 1);
 
+-- Question 1
+
 SELECT 
     u.username,
     u.email,
@@ -98,4 +100,18 @@ GROUP BY u.user_id
 ORDER BY 
     total_spend DESC
 LIMIT 5;
+
+-- Question 2
+SELECT 
+    p.product_name,
+    SUM(oi.quantity) AS total_quantity_sold
+FROM 
+    products p
+JOIN 
+    order_items oi ON p.product_id = oi.product_id
+GROUP BY 
+    p.product_id
+ORDER BY 
+    total_quantity_sold DESC
+LIMIT 1;
 
